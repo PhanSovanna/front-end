@@ -10,42 +10,48 @@
       </v-carousel>
     </span>
 
-    <h4>SEARCH RESULT</h4>
-    <v-row justify="center" no-gutters>
-      <v-card
-        class="mx-2"
-        width="250"
-        v-for="item in search_result"
-        :key="item.name"
-      >
-        <v-img src="https://cdn.vuetifyjs.com/images/cards/cooking.png"></v-img>
-        <v-card-title>
-          <h6>Name:</h6>
-          <v-spacer></v-spacer>
-          <h5>{{ item.name }}</h5></v-card-title
+    <span v-if="search_result != null">
+      <h4>SEARCH RESULT</h4>
+      <v-row justify="center" no-gutters>
+        <v-card
+          class="mx-2"
+          width="250"
+          v-for="item in search_result"
+          :key="item.name"
+          @click="details"
         >
-        <v-card-text>
-          <v-row align="center" class="mx-0">
-            <v-rating
-              :value="item.star"
-              color="amber"
-              dense
-              half-increments
-              readonly
-              size="14"
-            ></v-rating>
-          </v-row>
-        </v-card-text>
-      </v-card>
-    </v-row>
+          <v-img
+            src="https://cdn.vuetifyjs.com/images/cards/cooking.png"
+          ></v-img>
+          <v-card-title>
+            <h6>Name:</h6>
+            <v-spacer></v-spacer>
+            <h5>{{ item.name }}</h5></v-card-title
+          >
+          <v-card-text>
+            <v-row align="center" class="mx-0">
+              <v-rating
+                :value="item.star"
+                color="amber"
+                dense
+                half-increments
+                readonly
+                size="14"
+              ></v-rating>
+            </v-row>
+          </v-card-text>
+        </v-card>
+      </v-row>
+    </span>
 
     <h4>POPULAR PRODUCTS</h4>
     <v-row no-gutters>
       <v-card
         class="mx-2"
         width="250"
-        v-for="item in search_result"
+        v-for="item in popular_products"
         :key="item.name"
+        @click="details"
       >
         <v-img src="https://cdn.vuetifyjs.com/images/cards/cooking.png"></v-img>
         <v-card-title>
@@ -75,7 +81,14 @@ export default {
   name: "Home",
   data: () => ({
     showFilter: false,
-    search_result: [
+    search_result: null,
+    categories: [
+      { title: "Click Me" },
+      { title: "Click Me" },
+      { title: "Click Me" },
+      { title: "Click Me 2" },
+    ],
+    popular_products: [
       {
         name: "News Agent",
         star: 4,
@@ -101,13 +114,6 @@ export default {
         star: 4,
       },
     ],
-    categories: [
-      { title: "Click Me" },
-      { title: "Click Me" },
-      { title: "Click Me" },
-      { title: "Click Me 2" },
-    ],
-    popular_products: [],
     slide: [
       {
         src: "https://cdn.vuetifyjs.com/images/carousel/sky.jpg",
@@ -121,6 +127,39 @@ export default {
     ],
   }),
   components: {},
+  methods: {
+    details() {
+      this.$router.push({ path: "/details" });
+    },
+    search(){
+      this.search_result = [
+        {
+        name: "News Agent",
+        star: 4,
+      },
+      {
+        name: "News Agent2",
+        star: 4,
+      },
+      {
+        name: "News Agent1",
+        star: 4,
+      },
+      {
+        name: "MITDTLA",
+        star: 4,
+      },
+      {
+        name: "Starbuck",
+        star: 4,
+      },
+      {
+        name: "Book Store",
+        star: 4,
+      },
+      ]
+    }
+  },
 };
 </script>
 

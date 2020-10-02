@@ -1,5 +1,6 @@
 <template>
   <div>
+    <v-app>
     <v-app-bar>
       <img height="100%" src="./assets/img/logo/logo.png" />
       <v-spacer></v-spacer>
@@ -22,7 +23,10 @@
     </v-app-bar>
     <v-container mx-16 px-16 fill-height>
       <v-toolbar dense fixed>
-        <v-icon>mdi-home</v-icon>
+        <v-btn to="/" text>
+          <v-icon>mdi-home</v-icon>
+        </v-btn>
+
         <v-spacer></v-spacer>
 
         <div>
@@ -33,18 +37,27 @@
           <v-icon>mdi-filter-variant</v-icon> Filter</v-btn
         >
         <v-menu offset-y>
-          <template v-slot:activator="{ on, attrs }">
-            <v-btn v-bind="attrs" v-on="on" text> categories </v-btn></template
-          >
-          <v-list>
-            <v-list-item v-for="(item, index) in categories" :key="index">
-              <v-list-item-title>{{ item.title }}</v-list-item-title>
-            </v-list-item>
-          </v-list>
-        </v-menu>
+      <template v-slot:activator="{ on, attrs }">
+        <v-btn
+        text
+          v-bind="attrs"
+          v-on="on"
+        >
+          categories
+        </v-btn>
+      </template>
+      <v-list>
+        <v-list-item
+          v-for="(item, index) in categories"
+          :key="index"
+        >
+          <v-list-item-title>{{ item.title }}</v-list-item-title>
+        </v-list-item>
+      </v-list>
+    </v-menu>
       </v-toolbar>
       <v-row v-if="showFilter" justify="center">
-        <v-card elevation="0" class="mx-auto" width="600" >
+        <v-card elevation="0" class="mx-auto" width="600">
           <v-toolbar flat dense>
             <v-toolbar-title>
               <span class="subheading">Price</span>
@@ -87,6 +100,7 @@
         <router-view />
       </v-container>
     </v-container>
+    </v-app>
   </div>
 </template>
 
@@ -95,32 +109,6 @@ export default {
   name: "Home",
   data: () => ({
     showFilter: false,
-    search_result: [
-      {
-        name: "News Agent",
-        star: 4,
-      },
-      {
-        name: "News Agent2",
-        star: 4,
-      },
-      {
-        name: "News Agent1",
-        star: 4,
-      },
-      {
-        name: "MITDTLA",
-        star: 4,
-      },
-      {
-        name: "Starbuck",
-        star: 4,
-      },
-      {
-        name: "Book Store",
-        star: 4,
-      },
-    ],
     categories: [
       { title: "Click Me" },
       { title: "Click Me" },
@@ -141,6 +129,7 @@ export default {
     ],
   }),
   components: {},
+  methods: {},
 };
 </script>
 
