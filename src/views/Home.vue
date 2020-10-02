@@ -1,18 +1,131 @@
 <template>
-  <div class="home">
-    <img alt="Vue logo" src="../assets/logo.png">
-    <HelloWorld msg="Welcome to Your Vue.js App"/>
-  </div>
+  <v-container>
+    <span>
+      <v-carousel hide-delimiters>
+        <v-carousel-item
+          v-for="(item, i) in slide"
+          :key="i"
+          :src="item.src"
+        ></v-carousel-item>
+      </v-carousel>
+    </span>
+
+    <h4>SEARCH RESULT</h4>
+    <v-row justify="center" no-gutters>
+      <v-card
+        class="mx-2"
+        width="250"
+        v-for="item in search_result"
+        :key="item.name"
+      >
+        <v-img src="https://cdn.vuetifyjs.com/images/cards/cooking.png"></v-img>
+        <v-card-title>
+          <h6>Name:</h6>
+          <v-spacer></v-spacer>
+          <h5>{{ item.name }}</h5></v-card-title
+        >
+        <v-card-text>
+          <v-row align="center" class="mx-0">
+            <v-rating
+              :value="item.star"
+              color="amber"
+              dense
+              half-increments
+              readonly
+              size="14"
+            ></v-rating>
+          </v-row>
+        </v-card-text>
+      </v-card>
+    </v-row>
+
+    <h4>POPULAR PRODUCTS</h4>
+    <v-row no-gutters>
+      <v-card
+        class="mx-2"
+        width="250"
+        v-for="item in search_result"
+        :key="item.name"
+      >
+        <v-img src="https://cdn.vuetifyjs.com/images/cards/cooking.png"></v-img>
+        <v-card-title>
+          <h6>Name:</h6>
+          <v-spacer></v-spacer>
+          <h5>{{ item.name }}</h5></v-card-title
+        >
+        <v-card-text>
+          <v-row align="center" class="mx-0">
+            <v-rating
+              :value="item.star"
+              color="amber"
+              dense
+              half-increments
+              readonly
+              size="14"
+            ></v-rating>
+          </v-row>
+        </v-card-text>
+      </v-card>
+    </v-row>
+  </v-container>
 </template>
 
 <script>
-// @ is an alias to /src
-import HelloWorld from '@/components/HelloWorld.vue'
-
 export default {
-  name: 'Home',
-  components: {
-    HelloWorld
-  }
-}
+  name: "Home",
+  data: () => ({
+    showFilter: false,
+    search_result: [
+      {
+        name: "News Agent",
+        star: 4,
+      },
+      {
+        name: "News Agent2",
+        star: 4,
+      },
+      {
+        name: "News Agent1",
+        star: 4,
+      },
+      {
+        name: "MITDTLA",
+        star: 4,
+      },
+      {
+        name: "Starbuck",
+        star: 4,
+      },
+      {
+        name: "Book Store",
+        star: 4,
+      },
+    ],
+    categories: [
+      { title: "Click Me" },
+      { title: "Click Me" },
+      { title: "Click Me" },
+      { title: "Click Me 2" },
+    ],
+    popular_products: [],
+    slide: [
+      {
+        src: "https://cdn.vuetifyjs.com/images/carousel/sky.jpg",
+      },
+      {
+        src: "https://cdn.vuetifyjs.com/images/carousel/bird.jpg",
+      },
+      {
+        src: "https://cdn.vuetifyjs.com/images/carousel/planet.jpg",
+      },
+    ],
+  }),
+  components: {},
+};
 </script>
+
+<style scoped>
+p {
+  font-size: 14px;
+}
+</style>
